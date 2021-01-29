@@ -6,7 +6,7 @@ const CardProducts = () => {
     const [prods, setProds] = useState([]);
 
     useEffect(async () => {
-        const url = "http://localhost/FSELETRO-React/backend/";
+        const url = "http://localhost:3333/produtos";
         const res = await fetch(url);
         setProds(await res.json());
     }, [])
