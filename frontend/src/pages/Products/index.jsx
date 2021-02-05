@@ -1,10 +1,10 @@
-import React from 'react';
+import {React, lazy, Suspense} from 'react';
 import {Link} from 'react-router-dom';
 
 import './styles.css';
 
-import Category from '../../components/Category';
-import CardProducts from '../../components/Products/CardProducts';
+const Category = lazy(() => import('../../components/Category'))
+const CardProducts = lazy(() => import('../../components/Products/CardProducts'))
 
 const Products = () => {
 
@@ -19,10 +19,14 @@ const Products = () => {
                 </header>
                 <div className="products-section">
                     <div className="section-1">
+                    <Suspense fallback={ <p>Carregando...</p> }>
                         <Category />
+                    </Suspense>
                     </div>
                     <div className="section-2">
-                        <CardProducts />
+                        <Suspense fallback={ <p>Carregando...</p> }>
+                            <CardProducts />
+                        </Suspense>
                     </div>
                 </div>
 

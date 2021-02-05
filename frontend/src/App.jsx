@@ -1,10 +1,10 @@
-import React from 'react';
+import {React, lazy, Suspense} from 'react';
 import { BrowserRouter } from 'react-router-dom'
 
 import './assets/styles/global.css';
 
-import Routes from './components/Routes/routes';
-import Footer from './components/Footer/index';
+const Routes = lazy(() => import('./components/Routes/routes'))
+const Footer = lazy(() => import('./components/Footer/index'))
 
 
 function App() {
@@ -12,9 +12,14 @@ function App() {
     <>
 
         <BrowserRouter>
+          <Suspense fallback={ <p>Carregando...</p> }>
             <Routes />
+          </Suspense>
+            
         </BrowserRouter>
-        <Footer />
+        <Suspense fallback={ <p>Carregando...</p> }>
+            <Footer />
+        </Suspense>
 
     </>
   );
